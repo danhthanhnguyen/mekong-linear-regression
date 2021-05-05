@@ -6,6 +6,7 @@ from pandas import read_csv
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error
 from sklearn.metrics import r2_score
+from sklearn.metrics import mean_absolute_error
 
 def load_data(path):
     dataset = read_csv(path, engine='python')
@@ -41,6 +42,10 @@ def root_mean_square_error(y_pred,y_test):
 def r2(y_pred,y_test):
     r2 = r2_score(y_pred, y_test)
     return r2
+
+def absolute_error(y_pred,y_test):
+    absolute = mean_absolute_error(y_pred,y_test)
+    return absolute
 
 def plot_real_vs_predicted(y_pred,y_test):
     # plt.plot(y_pred,y_test,'ro')
@@ -102,6 +107,11 @@ def main():
         ### Check R2 score
         """
         st.write(f'R2 score: {r2(Y_lin_predict,Y_test):.2f}')
+        # Print absolute error
+        """
+        ### Check MAE
+        """
+        st.write(f'MAE: {absolute_error(Y_lin_predict,Y_test):.2f}')
         # Print Linear model
         """
         ### Check Linear model
